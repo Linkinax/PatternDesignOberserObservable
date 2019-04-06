@@ -7,17 +7,13 @@ public class Model extends Observable {
     Controller listaListener;
 
 
-    public String dato1= "Fai finta che questa sia il gameboard\n";
+    public String dato1= "-->Fai finta che questa sia il gameboard<--- ";
 
-    public void modificaDato1() {
+    public void modificaDato1( String changes) {
         System.out.println("Mo' modifico il gameboard...");
-        this.dato1 = "Fai finta che questa sia il gameboard\t + CHANGED MATE\n";
-
+        this.dato1 = "Fai finta che questa sia il gameboard\t" +changes ;
         setChanged();
-        //otifyObservers();
-        messages.ResponseFromController mex = new messages.ResponseFromController();
-        mex.setData("Dio porco");
-        notifyObservers(mex);
+        notifyObservers(this);
     }
 
     public Model(){

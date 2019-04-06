@@ -1,3 +1,4 @@
+import messages.RequestViewToController;
 import messages.ResponseFromController;
 
 import java.util.Observable;
@@ -7,14 +8,10 @@ public class Controller implements Observer {
 
     private Model model;
 
-    public void getDataFromModel() {
-        System.out.println("Dato iniziale:\t " + model.dato1);
+    public String getDataFromModel() {
+        return "Dato:\t " + model.dato1;
     }
 
-    public void elaboraDato1() {
-
-        model.modificaDato1();
-    }
 
     public Controller(Model mod) {
         this.model = mod;
@@ -23,9 +20,14 @@ public class Controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (arg != null && arg instanceof messages.ResponseFromController){
-            System.out.println("Il controlle mi ha parlato1: "+ ((ResponseFromController) arg).data);
+        if (arg != null && arg instanceof Model) {
+            System.out.println("Al controller è arrivato un updated model");
+            System.out.println("dati:\t" + model.dato1);
 
+        }
+        if (arg != null && arg instanceof messages.RequestViewToController){
+            System.out.println("Il controller scrive sul model "+  ((RequestViewToController) arg).data);
+            model.dato1 = ((RequestViewToController) arg).data;
 
         }else{
             System.out.println("Update partito dalla classe del controller, scattato perchè ho modificato il model (arg=null)");
@@ -33,11 +35,4 @@ public class Controller implements Observer {
 
     }
 
-    public void update(Observable o, messages.ResponseFromController arg) {
-
-
-
-        System.out.println("Il controlle mi ha parlato: "+ arg.data);
-
-    }
 }
