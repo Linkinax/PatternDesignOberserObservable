@@ -31,8 +31,10 @@ public class View extends Observable implements Observer {
             System.out.println("Il controller dovrebbe scrivere  : "+ ((RequestViewToController) arg).data);
 
 
-        }else{
-            System.out.println("Non è arrivato un RequestViewToController (arg=null)");
+        }else if (arg != null && arg instanceof Model) {
+            System.out.println("Al view  è arrivato un updated model");
+            System.out.println("dati nella view:\t" + ((Model) arg).dato1);
+
         }
 
     }

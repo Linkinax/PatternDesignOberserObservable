@@ -25,9 +25,9 @@ public class Controller implements Observer {
             System.out.println("dati:\t" + model.dato1);
 
         }
-        if (arg != null && arg instanceof messages.RequestViewToController){
+        else if (arg != null && arg instanceof messages.RequestViewToController){
             System.out.println("Il controller scrive sul model "+  ((RequestViewToController) arg).data);
-            model.dato1 = ((RequestViewToController) arg).data;
+            model.modificaDato1(((RequestViewToController) arg).data);
 
         }else{
             System.out.println("Update partito dalla classe del controller, scattato perchè ho modificato il model (arg=null)");

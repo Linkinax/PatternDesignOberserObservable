@@ -4,7 +4,6 @@ import java.util.Observable;
 
 public class Model extends Observable {
 
-    Controller listaListener;
 
 
     public String dato1= "-->Fai finta che questa sia il gameboard<--- ";
